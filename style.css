@@ -1,19 +1,74 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 
 /* universal selector */
 * {
     /* padding/margin doesn't stack/affect overall width */
     box-sizing: border-box;
 }
-/* yo */
+
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Muli', sans-serif;
     /* center content */
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
     overflow: hidden;
     margin: 0;
+}
+
+/* container for image panels */
+.container {
+    display: flex;
+    width: 90vw;
+}
+
+/* styling image panels - default inactive */
+.panel {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 80vh;
+    border-radius: 50px;
+    cursor: pointer;
+    color:aliceblue;
+    flex: 0.5;
+    margin: 10px;
+    /* need relative container to make h3 position absolute */
+    position: relative;
+    /* animate expansion/shrinking */
+    transition: flex 0.7s ease-in;
+}
+
+/* select h3s inside panels */
+.panel h3 {
+    font-size: 3rem;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    margin: 0;
+    opacity: 0;
+}
+
+/* select elements that have both classes */
+.panel.active {
+    flex: 5;
+}
+
+/* make h3 visible for active panel */
+.panel.active h3 {
+    opacity: 1;
+}
+
+/* style for viewport UNDER 480px */
+@media(max-width: 480px) {
+    .container {
+        width: 100vw;
+    }
+
+    /* pseudo selector - on 4th and 5th element */
+    .panel:nth-of-type(4), 
+    .panel:nth-of-type(5) {
+        display: none;
+    }
 }
